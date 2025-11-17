@@ -1,8 +1,150 @@
+# 🍔 Food Delivery App 
+
+A complete React Native (CLI) application for food ordering — featuring authentication, restaurant browsing, cart management, favorites, payments, and profile management.
+Built with TypeScript, Redux Toolkit, Firebase, Firestore, Reactotron, and Stripe SDK.
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+
+# 📌 Features
+### 🔐 Authentication
+
+Email & password sign-up / login
+
+Firebase Authentication
+
+Google Sign-In support
+
+Secure token persistence using AsyncStorage
+
+### 🏪 User Flow
+
+Splash screen
+
+Onboarding
+
+Select restaurants
+
+View meals & details
+
+Add/remove items from cart
+
+Favorite items
+
+Search restaurants / meals
+
+Checkout using Stripe SDK
+
+Access user location for delivery address
+
+### 👤 User Profile
+
+Edit personal info
+
+Update avatar
+
+Logout
+
+### 🛠 Architecture & Tools
+
+React Native CLI
+
+TypeScript
+
+Redux Toolkit (RTK) + Async Thunks
+
+AsyncStorage for persistence
+
+Firestore as backend database
+
+Reactotron for debugging
+
+Clean folder structure with separation of concerns
+
+# 📁 Project Structure
+FOOD_DELIVERY_APP
+│
+├── android/                 # Native Android project
+├── ios/                     # Native iOS project
+├── assets/                  # Images, fonts, icons
+│
+├── src/
+│   ├── components/          # Reusable UI components
+│   ├── constants/           # Colors, fonts, API keys
+│   ├── hooks/               # Custom hooks
+│   ├── navigation/          # Stack & Tab navigation
+│   ├── screens/             # All app screens (UI + logic)
+│   ├── services/            # Firebase, Stripe, API utilities
+│   ├── store/               # Redux Toolkit slices & store
+│   ├── types/               # Global TS types
+│   └── utils/               # Helpers, formatters, validators
+│
+├── App.tsx                  # App entry point
+├── firebaseConfig.js        # Firebase initialization
+├── ReactotronConfig.js      # Reactotron setup
+├── tsconfig.json            # TypeScript config
+├── babel.config.js          # Babel transformer
+└── package.json
+
+
+# 🏛 Architecture Overview (High-Level)
+                ┌──────────────────────────────┐
+                │          Presentation         │
+                │ (Screens, Components, Hooks)  │
+                └───────────────┬──────────────┘
+                                │
+                                ▼
+                ┌──────────────────────────────┐
+                │       Navigation Layer        │
+                │ (Auth Stack, App Stack, Tabs) │
+                └───────────────┬──────────────┘
+                                │
+                                ▼
+                ┌──────────────────────────────┐
+                │     State Management (RTK)    │
+                │   Slices: Auth, Cart, User    │
+                └───────────────┬──────────────┘
+                                │
+                                ▼
+        ┌───────────────────────────────────────────────────┐
+        │               Services / Data Layer               │
+        │  - Firestore (restaurants, items, users, cart)    │
+        │  - Firebase Auth (email, Google)                  │
+        │  - Stripe SDK (payments)                          │
+        │  - Location API                                   │
+        └───────────────────────────────────────────────────┘
+
+
+# 🧭 App Flowchart (Summary)
+                        ┌──────────┐
+                        │  Splash  │
+                        └─────┬────┘
+                              ▼
+                    ┌──────────────┐
+                    │ Onboarding?  │
+                    └─────┬────────┘
+                         Yes│No
+                             ▼
+                      ┌─────────────┐
+                      │  Auth Flow  │
+                      │ Login/Signup│
+                      └─────┬───────┘
+                            ▼
+                      ┌─────────────┐
+                      │  Home Tabs  │
+                      │ Restaurants │
+                      └─────┬───────┘
+                            ▼
+                ┌────────────────────────┐
+                │ Restaurants → Meals    │
+                │ Meals → Cart → Checkout│
+                │ Checkout → Stripe      │
+                └────────────────────────┘
+
 
 # Getting Started
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+> **Note**:Before you begin, ensure your development environment is correctly configured:
+https://reactnative.dev/docs/set-up-your-environment
 
 ## Step 1: Start Metro
 
@@ -75,23 +217,102 @@ When you want to forcefully reload, for example to reset the state of your app, 
 
 ## Congratulations! :tada:
 
-You've successfully run and modified your React Native App. :partying_face:
-
 ### Now what?
 
 - If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
 - If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
 
-# Troubleshooting
+You've successfully run and modified your React Native App. :partying_face:
+
+# 🧪 Development Tools
+### 🔍 Reactotron Setup
+
+Reactotron is enabled for debugging app state, network requests, and async storage.
+
+Configuration file:
+```sh
+ReactotronConfig.js
+```
+### 🔧 Environment Variables (Firebase Setup)
+
+Add your Firebase keys in:
+```sh
+firebaseConfig.js
+```
+Make sure to configure:
+
+Firestore
+
+Firebase Authentication
+
+Google Sign-In (iOS + Android)
+
+### 💳 Payments (Stripe)
+
+The app uses Stripe SDK for checkout flow.
+
+Follow Stripe setup docs:
+https://stripe.com/docs/payments/accept-a-payment?platform=react-native
+
+
+### 📡 Backend (Firestore)
+
+Firestore stores collections for:
+
+Users
+
+Restaurants
+
+Menu items
+
+Cart
+
+Favorites
+
+Orders
+
+### 🧭 App Navigation
+
+Built using:
+
+React Navigation Stack
+
+Bottom Tabs
+
+Auth flow + Main App flow separation
+
+### 🧵 State Management
+
+Using Redux Toolkit:
+
+Slices for Auth, Cart, Restaurants, Favorites, User Profile
+
+Async thunks for Firestore operations
+
+Persisting data via RTK + AsyncStorage
+
+
+
+# 🛠 Troubleshooting
 
 If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
 
-# Learn More
 
-To learn more about React Native, take a look at the following resources:
+# 📚 Learn More
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+React Native Docs — https://reactnative.dev
+
+Redux Toolkit — https://redux-toolkit.js.org
+
+Firestore — https://firebase.google.com/docs/firestore
+
+Stripe React Native — https://github.com/stripe/stripe-react-native
+
+# 🎉 Conclusion
+
+This project implements a complete, scalable, production-ready Food Delivery App using modern React Native architecture with TypeScript, Firebase, Stripe, and Redux Toolkit.
+
+
+# Author
+## Abdelrahman Aziz
+### LinkedIn: https://www.linkedin.com/in/abdelrahman-aziz-7473b437b/

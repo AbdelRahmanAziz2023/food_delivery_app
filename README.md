@@ -61,6 +61,7 @@ Reactotron for debugging
 Clean folder structure with separation of concerns
 
 # 📁 Project Structure
+```sh
 FOOD_DELIVERY_APP
 │
 ├── android/                 # Native Android project
@@ -84,7 +85,7 @@ FOOD_DELIVERY_APP
 ├── tsconfig.json            # TypeScript config
 ├── babel.config.js          # Babel transformer
 └── package.json
-
+```
 
 # 🏛 Architecture Overview (High-Level)
                 ┌──────────────────────────────┐
